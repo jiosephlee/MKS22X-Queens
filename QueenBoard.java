@@ -19,6 +19,9 @@ public class QueenBoard{
     }
 
     private boolean addQueen(int r,int c){
+        if(board[r][c] != 0){
+            return false;
+        }
         board[r][c] = -4;
         for (int i = 0; i < board.length;i++){
             board[r][i] = board[r][i] + 1;
@@ -79,23 +82,17 @@ public class QueenBoard{
     }
 
     public boolean solve(){
-        return solveHelp(0,0,-1);
+        return solveHelp(0,0);
     }
-    public boolean solveHelp(int row, int col, int prevcol){
-        System.out.println(debug());
+    public boolean solveHelp(int row, int col){
         if (row < board.length){
             if (col < board.length){
-                if(board[row][col] == 0){
-                    addQueen(row,col);
-                    return solveHelp(row + 1, 0, col);
+                if (addQueen(row,col)){
+                    return solveHelp(row + 1, 0);
                 }
-                return solveHelp(row, col + 1, -1);
+                return solveHelp(row, col + 1);
             }
-            if (row == 0){
-                return false;
-            }
-            removeQueen(row - 1, prevcol);
-            solveHelp(row - 1, prevcol + 1, -1);
+            return false;
         }
         return true;
     }
