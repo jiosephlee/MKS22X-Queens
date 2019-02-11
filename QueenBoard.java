@@ -17,6 +17,22 @@ public class QueenBoard{
         System.out.println(testtwo.debug());
         System.out.println(testtwo.solve());
         System.out.println(testtwo.debug());
+        testtwo = new QueenBoard(5);
+        System.out.println(testtwo.debug());
+        System.out.println(testtwo.solve());
+        System.out.println(testtwo.debug());
+        testtwo = new QueenBoard(7);
+        System.out.println(testtwo.debug());
+        System.out.println(testtwo.solve());
+        System.out.println(testtwo.debug());
+        testtwo = new QueenBoard(25);
+        System.out.println(testtwo.debug());
+        System.out.println(testtwo.solve());
+        System.out.println(testtwo.debug());
+        testtwo = new QueenBoard(10);
+        System.out.println(testtwo.debug());
+        System.out.println(testtwo.countSolutions());
+        System.out.println(testtwo.debug());
     }
 
     private int[][]board;
@@ -110,7 +126,7 @@ public class QueenBoard{
         return solveHelp(0,0,false);
     }
     public boolean solveHelp(int row, int col, boolean remove){
-        System.out.println(debug());
+        //System.out.println(debug());
         if (remove){
             removeQueen(row, col-1);
         }
@@ -126,6 +142,22 @@ public class QueenBoard{
         return true;
     }
     public int countSolutions(){
+        return countHelp(0,0,false);
+    }
+    public int countHelp(int row, int col, boolean remove){
+        //System.out.println(debug());
+        if (remove){
+            removeQueen(row, col-1);
+        }
+        if (row < board.length){
+            if (col < board.length){
+                if (addQueen(row,col)){
+                    return countHelp(row + 1, 0, false) + countHelp(row, col + 1, true);
+                }
+                return countHelp(row, col + 1, false);
+            }
+            return 0;
+        }
         return 1;
     }
 }
