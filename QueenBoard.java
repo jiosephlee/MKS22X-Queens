@@ -17,6 +17,14 @@ public class QueenBoard{
         System.out.println(testtwo.debug());
         System.out.println(testtwo.solve());
         System.out.println(testtwo.debug());
+        testtwo = new QueenBoard(2);
+        System.out.println(testtwo.debug());
+        System.out.println(testtwo.solve());
+        System.out.println(testtwo.debug());
+        testtwo = new QueenBoard(0);
+        System.out.println(testtwo.debug());
+        System.out.println(testtwo.solve());
+        System.out.println(testtwo.debug());
         testtwo = new QueenBoard(5);
         System.out.println(testtwo.debug());
         System.out.println(testtwo.solve());
@@ -30,6 +38,14 @@ public class QueenBoard{
         System.out.println(testtwo.solve());
         System.out.println(testtwo.debug());
         testtwo = new QueenBoard(10);
+        System.out.println(testtwo.debug());
+        System.out.println(testtwo.countSolutions());
+        System.out.println(testtwo.debug());
+        testtwo = new QueenBoard(14);
+        System.out.println(testtwo.debug());
+        System.out.println(testtwo.countSolutions());
+        System.out.println(testtwo.debug());
+        testtwo = new QueenBoard(0);
         System.out.println(testtwo.debug());
         System.out.println(testtwo.countSolutions());
         System.out.println(testtwo.debug());
@@ -123,6 +139,13 @@ public class QueenBoard{
     }
 
     public boolean solve(){
+        for (int[] row: board) {
+            for (int value : row ) {
+                if (value != 0){
+                    throw new IllegalStateException();
+                }
+            }
+        }
         return solveHelp(0,0,false);
     }
     public boolean solveHelp(int row, int col, boolean remove){
@@ -142,6 +165,13 @@ public class QueenBoard{
         return true;
     }
     public int countSolutions(){
+        for (int[] row: board) {
+            for (int value : row ) {
+                if (value != 0){
+                    throw new IllegalStateException();
+                }
+            }
+        }
         return countHelp(0,0,false);
     }
     public int countHelp(int row, int col, boolean remove){
